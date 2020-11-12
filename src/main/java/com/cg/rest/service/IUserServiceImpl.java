@@ -23,10 +23,8 @@ public class IUserServiceImpl implements IUserService {
 
 
 	public User findById(Long userId) throws ResourceNotFoundException {
-		User user = userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("No User Found with this id : " + userId));
-		return user;
-	
-	}
+		return userRepo.findById(userId).orElseThrow(() -> new ResourceNotFoundException("No User Found with this id : " + userId));
+		 }
 	
 	  public List<User> findAll() {
 	        return userRepo.findAll();
