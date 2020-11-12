@@ -32,6 +32,8 @@ public class User {
 	private Long mobileNumber;
 	@Column(nullable = false)
 	private Long aadharCardNo;
+	@Column(nullable = false)
+	private String password;
 	
 	public User() {
 		super();
@@ -105,12 +107,21 @@ public class User {
 	public void setAadharCardNo(Long aadharCardNo) {
 		this.aadharCardNo = aadharCardNo;
 	}
+	
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", firstName=" + firstName + ", middleName=" + middleName + ", lastName="
 				+ lastName + ", email=" + email + ", mobileNumber=" + mobileNumber + ", aadharCardNo=" + aadharCardNo
-				+ "]";
+				+ ", password=" + password + "]";
 	}
 	
 	
