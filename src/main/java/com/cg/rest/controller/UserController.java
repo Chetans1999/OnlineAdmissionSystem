@@ -46,12 +46,12 @@ public class UserController {
     }
 	
 	@GetMapping("/users/all")
-    public List<User> getAllMovies() {
+    public List<User> getAllUsers() {
         return iuserServiceImpl.findAll();
     }
 	
 	@GetMapping("/users/get/{id}")
-    public ResponseEntity<User> getMovieById(@PathVariable(value = "id") Long userId) throws ResourceNotFoundException {
+    public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long userId) throws ResourceNotFoundException {
 		User user = iuserServiceImpl.findById(userId);
         return ResponseEntity.ok().body(user);
     }
