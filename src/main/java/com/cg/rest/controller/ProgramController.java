@@ -3,9 +3,6 @@ package com.cg.rest.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.cg.rest.exception.ResourceNotFoundException;
 import com.cg.rest.model.Program;
 import com.cg.rest.service.IProgramServiceImpl;
@@ -26,7 +22,6 @@ public class ProgramController {
 	
 	@Autowired
 	private IProgramServiceImpl iprogramServiceImpl;
-	
 	
 	@PostMapping("/program/new")
 	public Program addProgram(@RequestBody Program program) {
@@ -63,12 +58,13 @@ public class ProgramController {
 	 public ResponseEntity<Program> updateProgram(@PathVariable(value = "id") Long programId, @RequestBody Program programDetails) throws ResourceNotFoundException {
 		Program program = iprogramServiceImpl.findById(programId);
 		program.setProgramName(programDetails.getProgramName());
-		program.setEligibility(programDetails.getEligibility());
-		program.setDuration(programDetails.getDuration());
+		program.setProgramDescription(programDetails.getProgramDescription());
+		program.setProgramDuration(programDetails.getProgramDuration());
+		program.setProgramEligibility(programDetails.getProgramEligibility());
 		program.setDegreeOffered(programDetails.getDegreeOffered());
       
-       Program updatedProgram = iprogramServiceImpl.save(program);
-       return ResponseEntity.ok(updatedProgram);
+        Program updatedProgram = iprogramServiceImpl.save(program);
+        return ResponseEntity.ok(updatedProgram);
    }
 	
 	

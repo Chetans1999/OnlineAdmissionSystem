@@ -1,6 +1,5 @@
 package com.cg.rest.model;
 
-
 import javax.persistence.*;
 
 @Entity
@@ -8,7 +7,7 @@ public class Address
 {	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long addressId;
+	private long addressId;
 	private String city;
 	private String district;
 	private  String state;
@@ -36,10 +35,10 @@ public class Address
 		return "Address [addressId=" + addressId + ", city=" + city + ", district=" + district + ", state=" + state
 				+ ", country=" + country + ", zipcode=" + zipcode + ", landmark=" + landmark + "]";
 	}
-	public Long getAddressId() {
+	public long getAddressId() {
 		return addressId;
 	}
-	public void setAddressId(Long addressId) {
+	public void setAddressId(long addressId) {
 		this.addressId = addressId;
 	}
 	public String getCity() {

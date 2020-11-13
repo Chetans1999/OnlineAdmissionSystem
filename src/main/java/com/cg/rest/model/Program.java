@@ -1,73 +1,88 @@
 package com.cg.rest.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-public class Program {
-	
+public class Program
+{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long programId;
-	@Column(nullable = false)
+	private long programId;	
 	private String programName;
-	@Column(nullable = false)
-	private String eligibility;
-	@Column(nullable = false)
-	private String duration;
-	@Column(nullable = false)
+	private String programDescription;
+	private String programEligibility;
+	private String programDuration;
 	private String degreeOffered;
+	
 	public Program() {
 		super();
 	}
-	public Program(Long programId, String programName, String eligibility, String duration, String degreeOffered) {
+	
+	public Program(String programName, String programDescription, String programEligibility,
+			String programDuration, String degreeOffered) {
 		super();
-		this.programId = programId;
 		this.programName = programName;
-		this.eligibility = eligibility;
-		this.duration = duration;
+		this.programDescription = programDescription;
+		this.programEligibility = programEligibility;
+		this.programDuration = programDuration;
 		this.degreeOffered = degreeOffered;
 	}
-	public Long getProgramId() {
+
+	public long getProgramId() {
 		return programId;
 	}
-	public void setProgramId(Long programId) {
+
+	public void setProgramId(long programId) {
 		this.programId = programId;
 	}
+
 	public String getProgramName() {
 		return programName;
 	}
+
 	public void setProgramName(String programName) {
 		this.programName = programName;
 	}
-	public String getEligibility() {
-		return eligibility;
+
+	public String getProgramDescription() {
+		return programDescription;
 	}
-	public void setEligibility(String eligibility) {
-		this.eligibility = eligibility;
+
+	public void setProgramDescription(String programDescription) {
+		this.programDescription = programDescription;
 	}
-	public String getDuration() {
-		return duration;
+
+	public String getProgramEligibility() {
+		return programEligibility;
 	}
-	public void setDuration(String duration) {
-		this.duration = duration;
+
+	public void setProgramEligibility(String programEligibility) {
+		this.programEligibility = programEligibility;
 	}
+
+	public String getProgramDuration() {
+		return programDuration;
+	}
+
+	public void setProgramDuration(String programDuration) {
+		this.programDuration = programDuration;
+	}
+
 	public String getDegreeOffered() {
 		return degreeOffered;
 	}
+
 	public void setDegreeOffered(String degreeOffered) {
 		this.degreeOffered = degreeOffered;
 	}
+
 	@Override
 	public String toString() {
-		return "Program [programId=" + programId + ", programName=" + programName + ", eligibility=" + eligibility
-				+ ", duration=" + duration + ", degreeOffered=" + degreeOffered + "]";
+		return "Program [programId=" + programId + ", programName=" + programName + ", programDescription="
+				+ programDescription + ", programEligibility=" + programEligibility + ", programDuration="
+				+ programDuration + ", degreeOffered=" + degreeOffered + "]";
 	}
 	
 	
-
+	
 }
