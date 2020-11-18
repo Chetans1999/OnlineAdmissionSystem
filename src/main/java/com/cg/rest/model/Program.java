@@ -8,10 +8,15 @@ public class Program
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long programId;	
+	@Column(nullable = false)
 	private String programName;
+	@Column(nullable = false)
 	private String programDescription;
+	@Column(nullable = false)
 	private String programEligibility;
+	@Column(nullable = false)
 	private String programDuration;
+	@Column(nullable = false)
 	private String degreeOffered;
 	
 	public Program() {

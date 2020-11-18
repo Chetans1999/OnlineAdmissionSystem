@@ -31,13 +31,13 @@ public class CourseController {
 	private IBranchServiceImpl brSer;
 	
 	@PostMapping("/courses/new")
-	public Course addCourse(@RequestBody Course course) {
-        return crsSer.save(course);
+	public ResponseEntity<Course> addCourse(@RequestBody Course course) {
+        return ResponseEntity.ok(crsSer.save(course));
     }
 	
 	@GetMapping("/courses/all")
-    public List<Course> getAllCourses() {
-        return crsSer.findAll();
+    public ResponseEntity<List<Course>> getAllCourses() {
+        return ResponseEntity.ok(crsSer.findAll());
     }
 	
 	@GetMapping("/courses/getById/{id}")
@@ -47,13 +47,13 @@ public class CourseController {
     }
 	
 	@GetMapping("/courses/getByName/{name}")
-    public Set<Course> getCourseByName(@PathVariable(value = "name") String courseName) throws ResourceNotFoundException {
-		return crsSer.findByCourseName(courseName);
+    public ResponseEntity<Set<Course>> getCourseByName(@PathVariable(value = "name") String courseName) throws ResourceNotFoundException {
+		return ResponseEntity.ok(crsSer.findByCourseName(courseName));
     }
 	
 	@GetMapping(("/courses/getByCollegeId/{id}"))
-	public Set<Course> getCourseByCollegeId(@PathVariable(value = "id") long collegeId) throws ResourceNotFoundException{
-		return crsSer.findByCollegeId(collegeId);
+	public ResponseEntity<Set<Course>> getCourseByCollegeId(@PathVariable(value = "id") long collegeId) throws ResourceNotFoundException{
+		return ResponseEntity.ok(crsSer.findByCollegeId(collegeId));
 	}
 	
 	@DeleteMapping("/courses/delete/{id}")
@@ -64,6 +64,7 @@ public class CourseController {
         return response;
     }
 	
+//	Working
 	@PutMapping("/courses/update/{id}")
     public ResponseEntity<Course> updateCourse(@PathVariable(value = "id") long courseId, @RequestBody Course courseDetails) throws ResourceNotFoundException {
 		Course course = crsSer.findById(courseId);
@@ -73,20 +74,17 @@ public class CourseController {
 		
 //		Updating Mapped BranchList
 		Iterator<Branch> it = course.getBranches().iterator();
+		Iterator<Branch> it2 = courseDetails.getBranches().iterator();
 		Set<Branch> brList = new HashSet<>();
 		while(it.hasNext()) {
-			Branch br = brSer.getBranchById(it.next().getBranchId());
-			Iterator<Branch> it2 = courseDetails.getBranches().iterator();
-			while(it2.hasNext()) {	
-				Branch brNew = it2.next();
-				br.setBranchName(brNew.getBranchName());
-				br.setBranchDescription(brNew.getBranchDescription());
-				brList.add(br);
-			}
+			Branch br = brSer.getBranchById(it.next().getBranchId());	
+			Branch brNew = it2.next();
+			br.setBranchName(brNew.getBranchName());
+			br.setBranchDescription(brNew.getBranchDescription());
+			brList.add(br);
 		}
-
 		course.setBranches(brList);
-        return ResponseEntity.ok(crsSer.save(course));
+		return ResponseEntity.ok(crsSer.save(course));
 	}
 	
 /*	update 1(clones of child entities)

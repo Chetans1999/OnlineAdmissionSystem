@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 
 @Entity
 @Table(name = "application")
@@ -15,9 +16,10 @@ public class Application {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer applicationId;
+	private Long applicationId;
 	@Column(nullable = false)
-	private String apllicantFullName;
+	private String applicantFullName;
+
 	@Column(nullable=false)
 	private LocalDate dateOfBirth;
 	@Column(nullable = false)
@@ -27,6 +29,7 @@ public class Application {
 	@Column(nullable = false)
 	private String goals;
 	@Column(nullable = false)
+	@Email(message = "Enter Correct Email ")
 	private String emailId;
 	@Column(nullable = false)
 	private int universityId;
@@ -45,12 +48,12 @@ public class Application {
 		super();
 	}
 
-	public Application(Integer applicationId, String apllicantFullName, LocalDate dateOfBirth,
-			String highestQualification, double finalYearPercentage, String goals, String emailId, int universityId,
-			int collegeId, int programId, int courseId, int branchId, String applicationStatus) {
+	public Application(Long applicationId, String applicantFullName, LocalDate dateOfBirth, String highestQualification,
+			double finalYearPercentage, String goals, String emailId, int universityId, int collegeId, int programId,
+			int courseId, int branchId, String applicationStatus) {
 		super();
 		this.applicationId = applicationId;
-		this.apllicantFullName = apllicantFullName;
+		this.applicantFullName = applicantFullName;
 		this.dateOfBirth = dateOfBirth;
 		this.highestQualification = highestQualification;
 		this.finalYearPercentage = finalYearPercentage;
@@ -66,7 +69,7 @@ public class Application {
 
 	@Override
 	public String toString() {
-		return "Application [applicationId=" + applicationId + ", apllicantFullName=" + apllicantFullName
+		return "Application [applicationId=" + applicationId + ", applicantFullName=" + applicantFullName
 				+ ", dateOfBirth=" + dateOfBirth + ", highestQualification=" + highestQualification
 				+ ", finalYearPercentage=" + finalYearPercentage + ", goals=" + goals + ", emailId=" + emailId
 				+ ", universityId=" + universityId + ", collegeId=" + collegeId + ", programId=" + programId
@@ -74,20 +77,20 @@ public class Application {
 				+ "]";
 	}
 
-	public Integer getApplicationId() {
+	public Long getApplicationId() {
 		return applicationId;
 	}
 
-	public void setApplicationId(Integer applicationId) {
+	public void setApplicationId(Long applicationId) {
 		this.applicationId = applicationId;
 	}
 
-	public String getApllicantFullName() {
-		return apllicantFullName;
+	public String getApplicantFullName() {
+		return applicantFullName;
 	}
 
-	public void setApllicantFullName(String apllicantFullName) {
-		this.apllicantFullName = apllicantFullName;
+	public void setApplicantFullName(String applicantFullName) {
+		this.applicantFullName = applicantFullName;
 	}
 
 	public LocalDate getDateOfBirth() {
@@ -178,6 +181,6 @@ public class Application {
 		this.applicationStatus = applicationStatus;
 	}
 
-	
-	
+
+		
 }

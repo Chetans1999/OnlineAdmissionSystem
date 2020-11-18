@@ -1,6 +1,7 @@
 package com.cg.rest.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -40,5 +41,15 @@ public class IUserServiceImpl implements IUserService {
 	  public void deleteAll() {
 			userRepo.deleteAll();
 		}
+	  
+	  public Optional<User> login(String email, String password) {
+	        return userRepo.login(email, password);
+	    }
+
+
+//	public Object viewAllUserDetails() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 	
 }

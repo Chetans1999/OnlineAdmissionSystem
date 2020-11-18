@@ -38,7 +38,6 @@ public class IPaymentServiceImpl implements IPaymentService
 
 	public Payment findByApplicationId(Long applicationId)throws ResourceNotFoundException {
 		return (pyRepo.findByApplicationId(applicationId));
-//				.orElseThrow(()-> new ResourceNotFoundException("No Payment found with this Application Id :"+ applicationId)));
 	}
 
 	public List<Payment> findByPaymentStatus(String paymentStatus) throws ResourceNotFoundException {
@@ -54,10 +53,5 @@ public class IPaymentServiceImpl implements IPaymentService
     	pyRepo.delete(py);
 	}
 
-	
-
-//	public int updatePaymentDetails(Payment payment) {
-//		return 0;
-//	}
 	
 }

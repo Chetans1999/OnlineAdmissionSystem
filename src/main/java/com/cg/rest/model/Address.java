@@ -1,17 +1,25 @@
 package com.cg.rest.model;
 
+
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 
 @Entity
 public class Address 
 {	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long addressId;
+	private Long addressId;
+	@Column(nullable=false)
 	private String city;
+	@Column(nullable=false)
 	private String district;
+	@Column(nullable=false)
 	private  String state;
+	@Column(nullable=false)
 	private String country;
+//	@Column(nullable=false)
+	@NotEmpty(message="Please provide zipcode")
 	private int zipcode;
 	private String landmark;
 	
@@ -35,10 +43,10 @@ public class Address
 		return "Address [addressId=" + addressId + ", city=" + city + ", district=" + district + ", state=" + state
 				+ ", country=" + country + ", zipcode=" + zipcode + ", landmark=" + landmark + "]";
 	}
-	public long getAddressId() {
+	public Long getAddressId() {
 		return addressId;
 	}
-	public void setAddressId(long addressId) {
+	public void setAddressId(Long addressId) {
 		this.addressId = addressId;
 	}
 	public String getCity() {

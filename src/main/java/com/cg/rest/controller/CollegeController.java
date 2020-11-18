@@ -24,13 +24,13 @@ public class CollegeController {
 	private ICollegeServiceImpl collSer;
 	
 	@PostMapping("/colleges/new")
-	public College addCollege(@RequestBody College college) {
-        return collSer.save(college);
+	public ResponseEntity<College> addCollege(@RequestBody College college) {
+        return ResponseEntity.ok().body(collSer.save(college));
     }
 	
 	@GetMapping("/colleges/all")
-    public List<College> getAllColleges() {
-        return collSer.findAll();
+    public ResponseEntity<List<College>> getAllColleges() {
+        return ResponseEntity.ok(collSer.findAll());
     }
 	
 	@GetMapping("/colleges/getById/{id}")
@@ -48,8 +48,8 @@ public class CollegeController {
     }
 	
 	@GetMapping("/colleges/getByName/{name}")
-    public Set<College> getCollegeByName(@PathVariable(value = "name") String collegeName) throws ResourceNotFoundException {
-		return collSer.findByCollegeName(collegeName);
+    public ResponseEntity<Set<College>> getCollegeByName(@PathVariable(value = "name") String collegeName) throws ResourceNotFoundException {
+		return ResponseEntity.ok(collSer.findByCollegeName(collegeName));
     }
 	
 	@PutMapping("/colleges/update/{id}")

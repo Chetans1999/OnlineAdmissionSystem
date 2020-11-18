@@ -3,6 +3,8 @@ package com.cg.rest.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,8 +25,8 @@ public class AddressController {
 	private IAddressServiceImpl adSer;
 	
 	@PostMapping("/address/new")
-	public Address addAddress(@RequestBody Address address) {
-		return adSer.save(address);
+	public ResponseEntity<Address> addAddress(@Valid @RequestBody Address address) {
+		return ResponseEntity.ok(adSer.save(address));
 	}
 	
 	@GetMapping("/address/getbyaddressid/{id}")

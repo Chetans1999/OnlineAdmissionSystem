@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.cg.rest.exception.ResourceNotFoundException;
 import com.cg.rest.model.Branch;
 import com.cg.rest.service.IBranchServiceImpl;
@@ -53,13 +54,12 @@ public class BranchController {
 		response.put("deleted", Boolean.TRUE);
 		return response;
 	}
-	
 	@PutMapping("/update/{id}")
 	public ResponseEntity<Branch> updateBranch(@PathVariable(value = "id") Long branchId, @RequestBody Branch branchdetails) throws ResourceNotFoundException  {
-		Branch branch = brSer.getBranchById(branchId);	
-		branch.setBranchName(branchdetails.getBranchName());
-		branch.setBranchDescription(branchdetails.getBranchDescription());
-		Branch updateBranch = brSer.addBranch(branch);
-		return ResponseEntity.ok().body(updateBranch);
-	}
+	Branch branch = brSer.getBranchById(branchId);	
+	branch.setBranchName(branchdetails.getBranchName());
+	branch.setBranchDescription(branchdetails.getBranchDescription());
+	Branch updateBranch = brSer.addBranch(branch);
+	return ResponseEntity.ok().body(updateBranch);
+}
 }

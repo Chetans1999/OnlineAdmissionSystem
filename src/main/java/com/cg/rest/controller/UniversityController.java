@@ -1,8 +1,8 @@
 package com.cg.rest.controller;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.cg.rest.model.Address;
 import com.cg.rest.model.College;
 import com.cg.rest.model.University;
@@ -37,13 +36,14 @@ public class UniversityController {
 	private ICollegeServiceImpl collSer;
 
 	@PostMapping("/universities/new")
-	public University addUniversity(@RequestBody University university) {
-		return uniSer.save(university);
+	public ResponseEntity<University> addUniversity(@RequestBody University newUniversity) {
+		University university = uniSer.save(newUniversity);
+		return ResponseEntity.ok().body(university);
 	}
 
 	@GetMapping("/universities/all")
-	public List<University> getAllUniversities() {
-		return uniSer.findAll();
+	public ResponseEntity<List<University>> getAllUniversities() {
+		return ResponseEntity.ok(uniSer.findAll());
 	}
 
 	@GetMapping("/universities/getById/{id}")
@@ -69,8 +69,8 @@ public class UniversityController {
 	}
 
 	@GetMapping("/universities/getByName/{name}")
-	public Set<University> getUniversityByName(@PathVariable(value = "name") String universityName) throws ResourceNotFoundException {
-		return uniSer.findByUniversityName(universityName);
+	public ResponseEntity<Set<University>> getUniversityByName(@PathVariable(value = "name") String universityName) throws ResourceNotFoundException {
+		return ResponseEntity.ok(uniSer.findByUniversityName(universityName));
 	}
 
 	@PutMapping("/universities/update/{id}")
@@ -90,18 +90,16 @@ public class UniversityController {
 		
 //		Updating Mapped College
 		Iterator<College> it = university.getCollegeList().iterator();
-		Set<College> collList = new HashSet<>();
+		Iterator<College> it2 = universityDetails.getCollegeList().iterator();
+		LinkedHashSet<College> collList = new LinkedHashSet<>();
 		while(it.hasNext()) {
-			College coll = collSer.findById(it.next().getCollegeRegId());
-			Iterator<College> it2 = universityDetails.getCollegeList().iterator();
-			while(it2.hasNext()) {	
-				College cNew = it2.next();
-				ResponseEntity<College> coll2 = collSer.updateCollegeById(coll.getCollegeRegId(), cNew, coll);      //add another argument coll to get IDs
-				collList.add(coll2.getBody());
-			}
+			College coll = collSer.findById(it.next().getCollegeRegId());	
+			College cNew = it2.next();
+			ResponseEntity<College> coll2 = collSer.updateCollegeById(coll.getCollegeRegId(), cNew, coll);      //add another argument coll to get IDs
+			collList.add(coll2.getBody());
 		}
 		university.setCollegeList(collList);
-		
+
 		University updatedUniversity = uniSer.save(university);
 		return ResponseEntity.ok(updatedUniversity);
 	}

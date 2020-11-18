@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,50 +27,55 @@ public class ApplicationController {
 	@Autowired
 	private IApplicationServiceImpl iapplicationServiceImpl;
 	
+	//Working
 	@PostMapping("/application/new")
-	public Application addApplication(@RequestBody Application application) {
+	public Application addApplication(@Valid @RequestBody Application application) {
 	
 		return iapplicationServiceImpl.save(application);
 	
 	}
 	
+	//Working
 	@GetMapping("/application/all")
-	public List<Application> viewAllApplication(){
-		return iapplicationServiceImpl.findAll();
+	public List<Application> viewAllApplication()
+	{
+		return iapplicationServiceImpl.findAllApplication();
 	}
 	
+	//Working
 	@GetMapping("/application/getbyemail/{emailId}")
 	public List<Application> viewApplicationByEmail(@PathVariable(value="emailId")String emailId)throws ResourceNotFoundException {
 		return iapplicationServiceImpl.findByEmailId(emailId);
 	}
 	
 	
-	
+	//Working
 	@GetMapping("/application/getbyapplicationid/{id}")
-	public ResponseEntity<Application> viewApplicationById(@PathVariable(value="id")Integer applicationId)throws ResourceNotFoundException{
+	public ResponseEntity<Application> viewApplicationById(@PathVariable(value="id")Long applicationId)throws ResourceNotFoundException{
 		Application application=iapplicationServiceImpl.findById(applicationId);
 		return ResponseEntity.ok().body(application);
 	}
 
+	//Working
 	@DeleteMapping("/application/delete/{applicationId}")
-		public Map<String, Boolean> deleteById(@PathVariable(value="applicationId")Integer applicationId)throws ResourceNotFoundException{
+		public Map<String, Boolean> deleteById(@PathVariable(value="applicationId")Long applicationId)throws ResourceNotFoundException{
 			iapplicationServiceImpl.delete(applicationId);
 			Map<String, Boolean> response = new HashMap<>();
 			response.put("Deleted", Boolean.TRUE);
 			return response;
 		}
 		
-	
+	//Working
 	@GetMapping("/application/getbyapplicationstatus/{applicationStatus}")
 	public List<Application> viewByApplicationStatus(@PathVariable(value="applicationStatus")String applicationStatus)throws ResourceNotFoundException{
 		return iapplicationServiceImpl.findByApplicationStatus(applicationStatus);
 	}
 	
-	
+	//Working
 	@PutMapping("/application/update/{id}")
-	public ResponseEntity<Application> updateApplication(@PathVariable(value = "id") Integer applicationId, @RequestBody Application applicationDetails) throws ResourceNotFoundException {
+	public ResponseEntity<Application> updateApplication(@PathVariable(value = "id") Long applicationId, @RequestBody Application applicationDetails) throws ResourceNotFoundException {
 		Application application = iapplicationServiceImpl.findById(applicationId);
-		application.setApllicantFullName(applicationDetails.getApllicantFullName());
+		application.setApplicantFullName(applicationDetails.getApplicantFullName());
 		application.setDateOfBirth(applicationDetails.getDateOfBirth());
 		application.setHighestQualification(applicationDetails.getHighestQualification());
 		application.setFinalYearPercentage(applicationDetails.getFinalYearPercentage());
@@ -83,5 +90,8 @@ public class ApplicationController {
 		Application updateApplication = iapplicationServiceImpl.save(application);
 		return ResponseEntity.ok(updateApplication);
 	}
+	
+	
+	
 	
 }

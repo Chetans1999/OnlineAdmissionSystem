@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +30,7 @@ public class PaymentController {
 	
 	//WORKING
 	@PostMapping("/payment/new")
-	public Payment addPayment(@RequestBody Payment payment) {
+	public Payment addPayment(@Valid @RequestBody Payment payment) {
 		return pySer.save(payment);
 	}
 	
@@ -45,14 +47,14 @@ public class PaymentController {
 	}
 	
 	//WORKING
-	@GetMapping("/payment/getbypaymentId/{id}")
+	@GetMapping("/payment/getbypaymentid/{id}")
 	public ResponseEntity<Payment> viewPaymentById(@PathVariable(value="id")Long paymentId)throws ResourceNotFoundException{
 		Payment py=pySer.findById(paymentId);
 		return ResponseEntity.ok().body(py);
 	}
 	
 	//WORKING
-	@GetMapping("/payment/getbyapplicationId/{id}")
+	@GetMapping("/payment/getbyapplicationid/{id}")
 	public ResponseEntity<Payment> viewPaymentByApplicationId(@PathVariable(value="id")Long applicationId)throws ResourceNotFoundException{
 		Payment py=pySer.findByApplicationId(applicationId);
 		return ResponseEntity.ok().body(py);
@@ -77,7 +79,6 @@ public class PaymentController {
 	@PutMapping("/payment/update/{paymentId}")
 	public ResponseEntity<Payment> updatePayment(@PathVariable(value="paymentId")Long paymentId, @RequestBody Payment paymentDetails)throws ResourceNotFoundException{
 		Payment py=pySer.findById(paymentId);
-//				.orElseThrow(()-> new ResourceNotFoundException("No Payment found with this id :"+ paymentId));
 		
 		py.setEmailId(paymentDetails.getEmailId());
 		py.setApplicationId(paymentDetails.getApplicationId());

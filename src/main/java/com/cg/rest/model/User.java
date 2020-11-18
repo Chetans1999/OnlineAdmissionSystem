@@ -7,8 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 
 
 @Entity
@@ -28,7 +26,7 @@ public class User {
 	@Email(message = "Email should be valid")
 	private String email;
 	@Column(nullable = false)
-	//@Size(min=0,max=10)
+	
 	private Long mobileNumber;
 	@Column(nullable = false)
 	private Long aadharCardNo;
@@ -41,7 +39,7 @@ public class User {
 	}
 
 	public User(Long userId, String firstName, String middleName, String lastName, String email, Long mobileNumber,
-			Long aadharCardNo) {
+			Long aadharCardNo,String password) {
 		super();
 		this.userId = userId;
 		this.firstName = firstName;
@@ -50,6 +48,7 @@ public class User {
 		this.email = email;
 		this.mobileNumber = mobileNumber;
 		this.aadharCardNo = aadharCardNo;
+		this.password = password;
 	}
 
 	public Long getUserId() {

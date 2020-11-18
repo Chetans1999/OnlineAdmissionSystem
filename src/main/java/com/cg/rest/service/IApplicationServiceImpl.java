@@ -22,7 +22,7 @@ public class IApplicationServiceImpl implements IApplicationService{
 		return appliRepo.save(application);
 	}
 	
-	public List<Application> findAll() {
+	public List<Application> findAllApplication() {
 		return appliRepo.findAll();
 	}
 
@@ -34,9 +34,10 @@ public class IApplicationServiceImpl implements IApplicationService{
 		return appliList;
 	}
 	
-	public Application findById(Integer applicationId) throws ResourceNotFoundException{
-		Application application = appliRepo.findById(applicationId).orElseThrow(() -> new ResourceNotFoundException("No Application Found with this id : " + applicationId));
-		return application;
+	public Application findById(Long applicationId) throws ResourceNotFoundException
+	{
+		return appliRepo.findById(applicationId).orElseThrow(() -> new ResourceNotFoundException("No Application Found with this id : " + applicationId));
+		
 	}
 	
 	public List<Application> findByApplicationStatus(String applicationStatus) throws ResourceNotFoundException {
@@ -47,7 +48,7 @@ public class IApplicationServiceImpl implements IApplicationService{
 		return appliList;
 	}
 
-	public void delete(Integer applicationId) throws ResourceNotFoundException {
+	public void delete(Long applicationId) throws ResourceNotFoundException {
     	Application appli = appliRepo.findById(applicationId).orElseThrow(() -> new ResourceNotFoundException("No Application Found with this id : " + applicationId));
     	appliRepo.delete(appli);
 	}

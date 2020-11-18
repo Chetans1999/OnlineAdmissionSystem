@@ -2,10 +2,12 @@ package com.cg.rest.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.Email;
 
 @Entity
 public class Payment 
@@ -13,11 +15,16 @@ public class Payment
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long paymentId;
+	@Column(nullable=false)
+	@Email(message = "Email should be valid")
 	private String emailId;
+	@Column(nullable=false)
 	private Long applicationId;
+	@Column(nullable=false)
 	private double paymentAmount;
 	private String paymentDescription;
 	private LocalDate paymentDate=LocalDate.now();
+	@Column(nullable=false)
 	private String paymentStatus;
 	
 	

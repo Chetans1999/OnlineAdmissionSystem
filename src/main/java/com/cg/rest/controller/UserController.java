@@ -27,12 +27,12 @@ public class UserController {
 	private IUserServiceImpl iuserServiceImpl;
 	
 	@PostMapping("/users/new")
-	public User addUser(@RequestBody User user) {
+	public User addUser(@Valid @RequestBody User user) {
 		return iuserServiceImpl.save(user);
 	}
 	
 	@PutMapping("/users/update/{id}")
-	 public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @RequestBody User userDetails) throws ResourceNotFoundException {
+	 public ResponseEntity<User> updateUser(@PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetails) throws ResourceNotFoundException {
 		User user = iuserServiceImpl.findById(userId);
 		user.setFirstName(userDetails.getFirstName());
         user.setMiddleName(userDetails.getMiddleName());

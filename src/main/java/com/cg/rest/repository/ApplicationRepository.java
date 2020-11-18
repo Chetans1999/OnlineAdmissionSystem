@@ -8,10 +8,11 @@ import org.springframework.stereotype.Repository;
 import com.cg.rest.model.Application;
 
 @Repository
-public interface ApplicationRepository extends JpaRepository<Application, Integer> {
+public interface ApplicationRepository extends JpaRepository<Application, Long> {
 
 	public List<Application> findByEmailId(String emailId);
 
 	public List<Application> findByApplicationStatus(String applicationStatus);
 
+	
 }

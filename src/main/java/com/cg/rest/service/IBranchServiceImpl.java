@@ -2,34 +2,36 @@ package com.cg.rest.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import com.cg.rest.exception.ResourceNotFoundException;
 import com.cg.rest.model.Branch;
 import com.cg.rest.repository.IBranchRepository;
 
-@Component
+@Service
 public class IBranchServiceImpl implements IBranchService {
 
 	@Autowired
 	private IBranchRepository brRep;
 
-	@Override
-	public Branch addBranch(Branch branch) {
+	public Branch addBranch(Branch branch) 
+	{
 		return brRep.save(branch);
 	}
 
-	@Override
-	public List<Branch> viewAllBranchDetails(){
+	public List<Branch> viewAllBranchDetails() 
+	{
 		return brRep.findAll();
 	}
 
-	@Override
-	public Branch getBranchById(Long branchId)throws ResourceNotFoundException{
-		return brRep.findById(branchId).orElseThrow(() -> new ResourceNotFoundException("No Branch found with this ID : " + branchId));
+	public Branch getBranchById(Long branchId)throws ResourceNotFoundException
+	{
+		Branch br = brRep.findById(branchId).orElseThrow(() -> new ResourceNotFoundException("No branch Found with this id : " + branchId)) ;
+		return br;
 	}
 
-	@Override
-	public List<Branch> findByBranchName(String branchName) throws ResourceNotFoundException {
+	public List<Branch> findByBranchName(String branchName) throws ResourceNotFoundException 
+	{
 		List<Branch> brList = brRep.findByBranchName(branchName);
 		if(brList.isEmpty()) {
 			throw new ResourceNotFoundException("No branch Found with this name : " + branchName);
@@ -37,9 +39,9 @@ public class IBranchServiceImpl implements IBranchService {
 		return brList;
 	}
 
-	@Override
-	public void deleteBranchById(Long branchId)throws ResourceNotFoundException {
-		Branch branch = brRep.findById(branchId).orElseThrow(() -> new ResourceNotFoundException("No Branch found with this ID : " + branchId));
+	public void deleteBranchById(Long branchId)throws ResourceNotFoundException 
+	{
+		Branch branch = brRep.findById(branchId).orElseThrow(() -> new ResourceNotFoundException("No branch Found with this id : " + branchId));
 		brRep.delete(branch); 
 	}
 

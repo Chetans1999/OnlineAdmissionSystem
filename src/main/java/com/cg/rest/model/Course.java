@@ -1,7 +1,6 @@
 package com.cg.rest.model;
 
 import java.util.Set;
-
 import javax.persistence.*;
 
 @Entity

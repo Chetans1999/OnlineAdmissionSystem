@@ -2,12 +2,9 @@ package com.cg.rest.service;
 
 import java.util.List;
 import java.util.Set;
-
 import org.springframework.http.ResponseEntity;
-
 import com.cg.rest.exception.ResourceNotFoundException;
 import com.cg.rest.model.College;
-
 public interface ICollegeService {
 	 public College save(College college);
 	 public List<College> findAll();
