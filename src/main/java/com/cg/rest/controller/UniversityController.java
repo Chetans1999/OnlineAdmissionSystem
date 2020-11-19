@@ -104,15 +104,6 @@ public class UniversityController {
 		return ResponseEntity.ok(updatedUniversity);
 	}
 
-		/*update 1(clones of child entities)
-		@PutMapping("/universities/update/{id}")
-		public ResponseEntity<University> updateUniversity(@PathVariable(value = "id") int universityId, @RequestBody University universityDetails) throws ResourceNotFoundException {
-			University university = uniSer.findById(universityId);
-			university.setUniversityName(universityDetails.getUniversityName());
-			university.setAddress(universityDetails.getAddress());
-	        university.setCollegeList(universityDetails.getCollegeList());
-	        University updatedUniversity = uniSer.save(university);
-	        return ResponseEntity.ok(updatedUniversity);
-		}*/
+
 
 }

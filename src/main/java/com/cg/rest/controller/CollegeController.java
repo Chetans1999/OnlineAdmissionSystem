@@ -59,16 +59,5 @@ public class CollegeController {
         return ResponseEntity.ok(collSer.save(updatedCollege));
 	}
 	
-/*	update 1(clones of child entities)
-	@PutMapping("/colleges/update/{id}")
-    public ResponseEntity<College> updateCollege(@PathVariable(value = "id") int collegeId, @RequestBody College collegeDetails) throws ResourceNotFoundException {
-		College college = collSer.findById(collegeId);
-		college.setCollegeName(collegeDetails.getCollegeName());
-		
-		college.setCollegeAddress(collegeDetails.getCollegeAddress());
-		college.setProgramList(collegeDetails.getProgramList());
-		college.setCourseList(collegeDetails.getCourseList());
-        return ResponseEntity.ok(collSer.save(college));
-    }*/
 
 }

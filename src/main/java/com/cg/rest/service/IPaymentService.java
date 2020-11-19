@@ -16,5 +16,5 @@ public interface IPaymentService
 	public Payment findByApplicationId(Long applicationId) throws ResourceNotFoundException;
 	public List<Payment> findByPaymentStatus(String paymentStatus) throws ResourceNotFoundException;
 	public void delete(Long paymentId) throws ResourceNotFoundException;
-//	public int updatePaymentDetails(Payment payment);
+
 }

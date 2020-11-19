@@ -47,9 +47,6 @@ public class IUserServiceImpl implements IUserService {
 	    }
 
 
-//	public Object viewAllUserDetails() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	
 	
 }

@@ -37,7 +37,7 @@ class UserTest {
 	private IUserServiceImpl iUserServ;
 	
 	@Test
-	public void viewAllUserDetailsTest() {
+	 void viewAllUserDetailsTest() {
 		
 		User user = new User(1L,"Chetan","Kumar","Sharma","chetansharma@gmail.com",21212L,2121212L,"pass");
 		List<User> us = new ArrayList<User>();
@@ -49,7 +49,7 @@ class UserTest {
 
 	
 	@Test
-	public void saveUserTest() {
+	 void saveUserTest() {
 		User user = new User(1L,"Chetan","Kumar","Sharma","chetansharma@gmail.com",21212L,2121212L,"pass");
         when(userRepo.save(user)).thenReturn(user);
         assertEquals(user,iUserServ.save(user));
@@ -57,7 +57,7 @@ class UserTest {
 	
 	
 	@Test
-	public void deleteUserTest() {
+	 void deleteUserTest() {
 		User user = new User(1L,"Chetan","Kumar","Sharma","chetansharma@gmail.com",21212L,2121212L,"pass");
         iUserServ.deleteAll();
         verify(userRepo,times(1)).deleteAll();

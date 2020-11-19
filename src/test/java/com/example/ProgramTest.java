@@ -28,7 +28,7 @@ import com.cg.rest.service.IProgramServiceImpl;
 
 
 @ExtendWith(MockitoExtension.class)
-public class ProgramTest {
+ class ProgramTest {
 	
 	@Mock
 	private IProgramRepository programRepo;
@@ -36,7 +36,7 @@ public class ProgramTest {
 	private IProgramServiceImpl iprogramServ;
 	
 	@Test
-	public void viewAllProgramDetailsTest() {
+	void viewAllProgramDetailsTest() {
 		
 		Program program = new Program("PostGraduation","PostGraduate","Graduation","2Years","MBA");
 		List<Program> us = new ArrayList<Program>();
@@ -46,7 +46,7 @@ public class ProgramTest {
 	}
 	
 	@Test
-	public void saveProgramTest() {
+	 void saveProgramTest() {
 		Program program = new Program("PostGraduation","PostGraduate","Graduation","2Years","MBA");
         when(programRepo.save(program)).thenReturn(program);
         assertEquals(program,iprogramServ.save(program));
@@ -54,7 +54,7 @@ public class ProgramTest {
 	
 	
 	@Test
-	public void deleteProgramTest() {
+	 void deleteProgramTest() {
 		Program program = new Program("PostGraduation","PostGraduate","Graduation","2Years","MBA");
         iprogramServ.deleteAll();
         verify(programRepo,times(1)).deleteAll();

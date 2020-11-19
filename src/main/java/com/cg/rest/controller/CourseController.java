@@ -87,15 +87,6 @@ public class CourseController {
 		return ResponseEntity.ok(crsSer.save(course));
 	}
 	
-/*	update 1(clones of child entities)
-	@PutMapping("/courses/update/{id}")
-    public ResponseEntity<Course> updateCourse(@PathVariable(value = "id") int courseId, @RequestBody Course courseDetails) throws ResourceNotFoundException {
-		Course course = crsSer.findById(courseId);
-		course.setCourseName(courseDetails.getCourseName());
-		course.setDescription(courseDetails.getDescription());
-		course.setEligibility(courseDetails.getEligibility());
-		course.setBranches(courseDetails.getBranches());
-        return ResponseEntity.ok(crsSer.save(course));
-    }*/
+
 
 }

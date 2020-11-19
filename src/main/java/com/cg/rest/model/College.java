@@ -14,8 +14,7 @@ public class College
 	private Set<Program> programList;
 	@OneToMany(cascade = CascadeType.ALL)
 	private Set<Course> courseList;
-//	@ManyToOne(cascade = CascadeType.ALL)
-//	private University universityName;
+
 	
 	public College() {
 		super();
@@ -70,13 +69,7 @@ public class College
 		this.courseList = courseList;
 	}
 
-//	public University getUniversityName() {
-//		return universityName;
-//	}
-//
-//	public void setUniversityName(University universityName) {
-//		this.universityName = universityName;
-//	}
+
 
 	@Override
 	public String toString() {
